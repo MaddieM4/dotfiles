@@ -4,6 +4,16 @@ OBSIDIAN_DEB:=obsidian/.apt/debs/obsidian.deb
 
 #CMD_STOW=$(stow -vt $HOME -d packages/enabled)
 
+list:
+	@echo "The following metapackages are available:"
+	@echo " - system-cli"
+	@echo " - system-gui"
+	@echo ""
+	@echo "Additionally, the following packages are available:"
+	@(cd pkg/available && ls | sed -e 's/^/ - /')
+	@echo ""
+	@echo "Use 'make [pkg]' to install any package or metapackage."
+
 deploy:
 	stow -vt $$HOME vim bash i3 apt secrets
 

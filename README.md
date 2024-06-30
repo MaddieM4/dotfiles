@@ -32,6 +32,14 @@ cd ~; mkdir -p projects; cd projects
 git clone https://github.com/MaddieM4/dotfiles.git
 cd dotfiles
 
-# Core CLI setup
+# Do the early setup necessary for this repo to be able to work
+./bootstrap
+
+# Now, install the packages you want (see pkg/available) with Make.
+# This adds a layer of dependency management over raw ./enable and ./apply.
+make bash
+
+# You will probably be interested in one of the following metapackages:
 make system-cli
+make system-gui
 ```
