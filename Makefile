@@ -15,3 +15,5 @@ $(OBSIDIAN_DEB): deploy
 obsidian: $(OBSIDIAN_DEB) deploy
 	stow -vt $$HOME obsidian
 	apt-reinstall
+
+system-cli: deploy # TODO
