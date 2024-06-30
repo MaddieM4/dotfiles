@@ -1,0 +1,22 @@
+#!/bin/bash
+
+export PATH="$PATH:$HOME/bin"
+export NIX_PATH="$HOME/.nix-defexpr/channels"
+
+if [ -e "$HOME/.secrets/env" ]; then
+  source "$HOME/.secrets/env" 
+  # Expected to produce:
+  #   NTFY_TOKEN
+fi
+
+export NTFY_DEFAULT_TOPIC="maddie-alerts"
+ntfy() {
+  local msg="$1"
+  local topic="$2"
+  if [ -z "$topic" ]; then
+    topic="$NTFY_DEFAULT_TOPIC"
+  fi
+  curl -d "$msg" \
+    -H "Authorization: Bearer $NTFY_TOKEN" \
+    "https://ntfy.maddiem4.cc/$topic"
+}
