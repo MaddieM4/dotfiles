@@ -46,8 +46,4 @@ cd dotfiles
 # Now, install the packages you want (see pkg/available) with Make.
 # This adds a layer of dependency management over raw ./enable and ./apply.
 make bash
-
-# You will probably be interested in one of the following metapackages:
-make system-cli
-make system-gui
 ```

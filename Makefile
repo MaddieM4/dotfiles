@@ -29,3 +29,14 @@ obsidian: $(OBSIDIAN_DEB) deploy
 	apt-reinstall
 
 system-cli: deploy # TODO
+
+
+# -----------------------------------------------------------------------------
+#  New-style builds, proven on my rebuild
+# -----------------------------------------------------------------------------
+.PHONY: bash
+bash:
+	./enable bash
+	./apply
+	sudo cp resources/local-profile.sh /etc/profile.d/
+	@echo "You may want to 'source /etc/profile.d/local-profile.sh' now"
