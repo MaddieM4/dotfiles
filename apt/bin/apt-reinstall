@@ -1,3 +1,11 @@
 #!/bin/bash
 set -e
-sudo apt update && sudo apt install $(cat ~/.apt-manual-list)
+
+sudo apt update
+sudo apt install $(cat ~/.apt/lists/*)
+
+if [ -e ~/.apt/debs/ ]; then
+  for pkg in ~/.apt/debs/*; do
+    sudo dpkg --install $pkg
+  done
+fi
