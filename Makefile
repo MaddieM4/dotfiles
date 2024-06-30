@@ -2,6 +2,8 @@ OBSIDIAN_VERSION:=1.6.5
 OBSIDIAN_URL:=https://github.com/obsidianmd/obsidian-releases/releases/download/v${OBSIDIAN_VERSION}/obsidian-${OBSIDIAN_VERSION}-amd64.deb
 OBSIDIAN_DEB:=obsidian/.apt/debs/obsidian.deb
 
+#CMD_STOW=$(stow -vt $HOME -d packages/enabled)
+
 deploy:
 	stow -vt $$HOME vim bash i3 apt secrets
 

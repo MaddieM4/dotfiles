@@ -1,3 +1,4 @@
 *.swp
 secrets/.secrets/env
 obsidian
+pkg/current
