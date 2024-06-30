@@ -17,23 +17,31 @@ commands to set up a computer starting from a base of Ubuntu 24.04 Server.
 
 ### OS install notes
 
+ * Default settings unless otherwise specified.
  * Did not use updated installer.
- * Use the whole Toshiba HDD as a volume group.
-   * Renaming it to `morgana-vg` required deleting all logical volumes.
-   * `morgana-root` 300G ext4
-   * `morgana-home` (remainder) ext4
- * Didn't install any snaps, obviously.
+ * Custom storage:
+   * Reformat target drive, eliminating existing partitions
+   * Use as boot device
+   * Create a GPT partition (unformatted) in the free space taking rest of drive
+   * Create volume group - name it `morgana-vg` (substitute your hostname as applicable) using that partition
+   * Create volumes:
+     * `morgana-root` 300G ext4
+     * `morgana-home` (remainder) ext4
+ * Appropriate profile config
+ * Install OpenSSH server (don't import keys)
+ * Don't install snaps
+ * Reboot
 
 ### Post-install buildout
 
 ```bash
+# Ensure basic dependencies
+sudo apt install -y git make stow
+
 # Clone this repo, do everything else inside it
 cd ~; mkdir -p projects; cd projects
 git clone https://github.com/MaddieM4/dotfiles.git
 cd dotfiles
-
-# Do the early setup necessary for this repo to be able to work
-./bootstrap
 
 # Now, install the packages you want (see pkg/available) with Make.
 # This adds a layer of dependency management over raw ./enable and ./apply.
