@@ -39,7 +39,7 @@ commands to set up a computer starting from a base of Ubuntu 24.04 Server.
 sudo apt install -y git make stow
 
 # Clone this repo, do everything else inside it
-cd ~; mkdir -p projects; cd projects
+cd ~; mkdir -p projects/f; cd projects
 git clone https://github.com/MaddieM4/dotfiles.git
 cd dotfiles
 

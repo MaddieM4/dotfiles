@@ -34,7 +34,7 @@ system-cli: deploy # TODO
 # -----------------------------------------------------------------------------
 #  New-style builds, proven on my rebuild
 # -----------------------------------------------------------------------------
-.PHONY: bash vim git ntfy 1password wallpapers
+.PHONY: bash vim git ntfy 1password chuck wallpapers
 bash:
 	./enable bash
 	./apply
@@ -66,6 +66,17 @@ ntfy: $(SECRETS_ENV_NTFY) bash
 	./enable 1password
 	./apply
 	op-configure
+
+pkg/available/chuck/projects/f/chuck:
+	mkdir -p pkg/available/chuck/projects/f
+	cd pkg/available/chuck/projects/f && git clone https://github.com/ccrma/chuck.git
+pkg/available/chuck/projects/f/chuck/src/chuck: pkg/available/chuck/projects/f/chuck
+	sudo apt install -y build-essential bison flex libsndfile1-dev \
+	  libasound2-dev libpulse-dev libjack-jackd2-dev
+	cd pkg/available/chuck/projects/f/chuck/src/ && make linux-all
+chuck: bash pkg/available/chuck/projects/f/chuck/src/chuck
+	./enable chuck
+	./apply
 
 wallpapers:
 	./enable wallpapers
