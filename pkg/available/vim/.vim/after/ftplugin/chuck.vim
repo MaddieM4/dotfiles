@@ -1,1 +1,1 @@
-nnoremap ,r :!chuck %<CR>
+nnoremap ,r :!chuck --driver:pulse %<CR>
