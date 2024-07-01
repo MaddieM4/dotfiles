@@ -1,7 +1,11 @@
+# Various generated objects
 *.swp
-secrets/.secrets/env
-secrets-env-*
-obsidian
 pkg/current
 
+# Secrets
+secrets-env-*
+pkg/available/ssh/.ssh/id_*
+
+# Heavy downloads
 pkg/available/chuck/projects
+obsidian.deb
