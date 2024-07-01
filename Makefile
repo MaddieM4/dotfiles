@@ -76,6 +76,13 @@ chuck: bash pkg/available/chuck/projects/f/chuck/src/chuck
 	./enable chuck
 	./apply
 
+pkg/available/chusic/projects/chusic:
+	cd pkg/available/chusic/projects/ && git clone git@github.com:MaddieM4/chusic.git
+chusic: pkg/available/chusic/projects/chusic chuck
+	./enable chusic
+	./apply
+	@echo "You may still need to download sample packs afterwards"
+
 sddm:
 	sudo apt install -y sddm nm-tray dbus-user-session dbus-x11 \
 		task-lxqt-desktop wpasupplicant xorg

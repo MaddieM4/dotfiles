@@ -8,4 +8,5 @@ pkg/available/ssh/.ssh/id_*
 
 # Heavy downloads
 pkg/available/chuck/projects
+pkg/available/chusic/projects/chusic
 obsidian.deb
