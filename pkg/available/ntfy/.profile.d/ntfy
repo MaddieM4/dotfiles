@@ -1,14 +1,3 @@
-#!/bin/bash
-
-export PATH="$PATH:$HOME/bin"
-export NIX_PATH="$HOME/.nix-defexpr/channels"
-
-if [ -e "$HOME/.secrets/env" ]; then
-  source "$HOME/.secrets/env" 
-  # Expected to produce:
-  #   NTFY_TOKEN
-fi
-
 export NTFY_DEFAULT_TOPIC="maddie-alerts"
 ntfy() {
   local msg="$1"

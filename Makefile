@@ -34,7 +34,7 @@ system-cli: deploy # TODO
 # -----------------------------------------------------------------------------
 #  New-style builds, proven on my rebuild
 # -----------------------------------------------------------------------------
-.PHONY: bash vim git 1password wallpapers
+.PHONY: bash vim git ntfy 1password wallpapers
 bash:
 	./enable bash
 	./apply
@@ -53,6 +53,14 @@ git: $(SECRETS_ENV_GIT) bash
 	./enable git
 	./apply
 	git-configure
+
+SECRETS_ENV_NTFY=pkg/available/ntfy/.profile.d/secrets-env-ntfy
+$(SECRETS_ENV_NTFY):
+	mkdir -p $(shell dirname $(SECRETS_ENV_NTFY))
+	resources/secrets-ntfy > $(SECRETS_ENV_NTFY)
+ntfy: $(SECRETS_ENV_NTFY) bash
+	./enable ntfy
+	./apply
 
 1password: bash
 	./enable 1password
