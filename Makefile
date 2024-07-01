@@ -36,6 +36,22 @@ git: $(SECRETS_ENV_GIT) bash
 	./apply
 	git-configure
 
+SSH_ALGORITHM=ed25519
+SSH_KEY_FILE=pkg/available/ssh/.ssh/id_$(SSH_ALGORITHM)
+SSH_PUB_FILE=pkg/available/ssh/.ssh/id_$(SSH_ALGORITHM).pub
+$(SSH_KEY_FILE): pkg/available/git/.profile.d/secrets-env-git
+	@. pkg/available/git/.profile.d/secrets-env-git && ssh-keygen \
+		-t "$(SSH_ALGORITHM)" \
+		-C "$$GIT_EMAIL" \
+		-f "$(SSH_KEY_FILE)"
+
+ssh: $(SSH_KEY_FILE)
+	./enable ssh
+	./apply
+	@echo "If you need to save your key in GitHub:"
+	@echo "  https://github.com/settings/keys"
+	@cat $(SSH_PUB_FILE)
+
 SECRETS_ENV_NTFY=pkg/available/ntfy/.profile.d/secrets-env-ntfy
 $(SECRETS_ENV_NTFY):
 	mkdir -p $(shell dirname $(SECRETS_ENV_NTFY))
