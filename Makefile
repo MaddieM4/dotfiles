@@ -87,6 +87,13 @@ i3: sddm
 	./enable i3
 	./apply
 
+lxqt: sddm
+	sudo apt install -y \
+		dbus-user-session \
+		dbus-x11 \
+		task-lxqt-desktop \
+		lxqt
+
 wallpapers:
 	./enable wallpapers
 	./apply
