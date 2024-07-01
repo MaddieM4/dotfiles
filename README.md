@@ -43,6 +43,9 @@ cd ~; mkdir -p projects; cd projects
 git clone https://github.com/MaddieM4/dotfiles.git
 cd dotfiles
 
-# Setting up a minimal CLI system
+# Setting up a minimal CLI system:
 make bash vim git
+
+# To expand that into a graphical system, do this next:
+make wallpapers
 ```

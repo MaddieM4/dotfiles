@@ -54,3 +54,6 @@ git: $(SECRETS_ENV_GIT)
 	./apply
 	git-configure
 
+wallpapers:
+	./enable wallpapers
+	./apply
