@@ -34,7 +34,7 @@ system-cli: deploy # TODO
 # -----------------------------------------------------------------------------
 #  New-style builds, proven on my rebuild
 # -----------------------------------------------------------------------------
-.PHONY: bash vim git ntfy 1password chuck wallpapers
+.PHONY: bash vim git ntfy 1password chuck i3 wallpapers
 bash:
 	./enable bash
 	./apply
@@ -76,6 +76,15 @@ pkg/available/chuck/projects/f/chuck/src/chuck: pkg/available/chuck/projects/f/c
 	cd pkg/available/chuck/projects/f/chuck/src/ && make linux-all
 chuck: bash pkg/available/chuck/projects/f/chuck/src/chuck
 	./enable chuck
+	./apply
+
+sddm:
+	sudo apt install -y sddm nm-tray dbus-user-session dbus-x11 \
+		task-lxqt-desktop wpasupplicant xorg
+
+i3: sddm
+	sudo apt install -y i3 xfce4-terminal nitrogen picom
+	./enable i3
 	./apply
 
 wallpapers:
