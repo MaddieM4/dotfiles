@@ -50,5 +50,22 @@ make bash vim git
 make 1password
 
 # To expand that into a graphical system, do this next:
-make wallpapers
+make lxqt wallpapers
+
+# I'm going to make sure I have per-host recipes as well.
+make katarina
+make morgana
 ```
+
+# A few observations
+
+This project is a bit of an abuse of both `make` and `stow`, and I fully know it. I'm trying
+to fill a gap that neither of them are entirely adequate for: setting up a system that requires
+both package installation and personal customization, both managed in a maintainable and somewhat
+reproducible way. I'm not too bothered about this being a messy bag of hacks, for one important
+reason: it's given me a better firsthand sense of what my package/system management tooling needs
+to handle well, what the requirements will be.
+
+That said, I'll be using this for awhile, as my own "real" solutions to these problems will take
+a long time to come to fruition. In the meantime, the "do prebuild stuff in Makefile" pattern
+works alright, and I need to make sure all packages support it.
