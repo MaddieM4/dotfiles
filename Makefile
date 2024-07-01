@@ -8,14 +8,6 @@ list:
 	@echo ""
 	@echo "Use 'make [pkg]' to install any package or metapackage."
 
-OBSIDIAN_VERSION:=1.6.5
-OBSIDIAN_URL:=https://github.com/obsidianmd/obsidian-releases/releases/download/v${OBSIDIAN_VERSION}/obsidian-${OBSIDIAN_VERSION}-amd64.deb
-OBSIDIAN_DEB:=obsidian/.apt/debs/obsidian.deb
-$(OBSIDIAN_DEB): deploy
-	mkdir -p $(shell dirname $(OBSIDIAN_DEB))
-	wget "$(OBSIDIAN_URL)" -O $(OBSIDIAN_DEB)
-obsidian: $(OBSIDIAN_DEB) deploy
-
 # -----------------------------------------------------------------------------
 #  New-style builds, proven on my rebuild
 # -----------------------------------------------------------------------------
@@ -29,6 +21,11 @@ bash:
 vim:
 	./enable vim
 	./apply
+
+devtools:
+	sudo apt install -y \
+		tree links neofetch inetutils-traceroute net-tools \
+		nodejs npm golang docker.io python3
 
 SECRETS_ENV_GIT=pkg/available/git/.profile.d/secrets-env-git
 $(SECRETS_ENV_GIT):
@@ -83,9 +80,22 @@ wallpapers:
 	./enable wallpapers
 	./apply
 
+OBSIDIAN_VERSION:=1.6.5
+OBSIDIAN_URL:=https://github.com/obsidianmd/obsidian-releases/releases/download/v${OBSIDIAN_VERSION}/obsidian-${OBSIDIAN_VERSION}-amd64.deb
+OBSIDIAN_DEB:=pkg/available/obsidian/Downloads/obsidian.deb
+$(OBSIDIAN_DEB):
+	wget "$(OBSIDIAN_URL)" -O $(OBSIDIAN_DEB)
+obsidian: $(OBSIDIAN_DEB)
+	sudo dpkg --install $(OBSIDIAN_DEB)
+	./enable obsidian
+	./apply
+
 # -----------------------------------------------------------------------------
 #  Host recipes
 # -----------------------------------------------------------------------------
-katarina: bash vim 1password git ntfy chuck i3 lxqt wallpapers
 
-morgana: bash vim 1password git ntfy chuck i3 lxqt wallpapers
+# Relatively clean dev machine
+morgana: bash vim 1password git ntfy chuck i3 lxqt wallpapers obsidian devtools
+
+# All that and a bag of streamin' tools (TODO)
+katarina: morgana
