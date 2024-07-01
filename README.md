@@ -46,6 +46,9 @@ cd dotfiles
 # Setting up a minimal CLI system:
 make bash vim git
 
+# You may find it useful to turn on a password manager:
+make 1password
+
 # To expand that into a graphical system, do this next:
 make wallpapers
 ```

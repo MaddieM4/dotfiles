@@ -34,7 +34,7 @@ system-cli: deploy # TODO
 # -----------------------------------------------------------------------------
 #  New-style builds, proven on my rebuild
 # -----------------------------------------------------------------------------
-.PHONY: bash vim git
+.PHONY: bash vim git 1password wallpapers
 bash:
 	./enable bash
 	./apply
@@ -49,10 +49,15 @@ SECRETS_ENV_GIT=pkg/available/git/.profile.d/secrets-env-git
 $(SECRETS_ENV_GIT):
 	mkdir -p $(shell dirname $(SECRETS_ENV_GIT))
 	resources/secrets-git > $(SECRETS_ENV_GIT)
-git: $(SECRETS_ENV_GIT)
+git: $(SECRETS_ENV_GIT) bash
 	./enable git
 	./apply
 	git-configure
+
+1password: bash
+	./enable 1password
+	./apply
+	op-configure
 
 wallpapers:
 	./enable wallpapers
