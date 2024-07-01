@@ -43,7 +43,6 @@ cd ~; mkdir -p projects; cd projects
 git clone https://github.com/MaddieM4/dotfiles.git
 cd dotfiles
 
-# Now, install the packages you want (see pkg/available) with Make.
-# This adds a layer of dependency management over raw ./enable and ./apply.
-make bash
+# Setting up a minimal CLI system
+make bash git
 ```
