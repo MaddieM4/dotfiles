@@ -34,12 +34,16 @@ system-cli: deploy # TODO
 # -----------------------------------------------------------------------------
 #  New-style builds, proven on my rebuild
 # -----------------------------------------------------------------------------
-.PHONY: bash git
+.PHONY: bash vim git
 bash:
 	./enable bash
 	./apply
 	sudo cp resources/local-profile.sh /etc/profile.d/
 	@echo "You may want to 'source /etc/profile.d/local-profile.sh' now"
+
+vim:
+	./enable vim
+	./apply
 
 SECRETS_ENV_GIT=pkg/available/git/.profile.d/secrets-env-git
 $(SECRETS_ENV_GIT):
@@ -49,3 +53,4 @@ git: $(SECRETS_ENV_GIT)
 	./enable git
 	./apply
 	git-configure
+

@@ -44,5 +44,5 @@ git clone https://github.com/MaddieM4/dotfiles.git
 cd dotfiles
 
 # Setting up a minimal CLI system
-make bash git
+make bash vim git
 ```
