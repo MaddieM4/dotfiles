@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source ~/.profile.d/secrets-env-git
+git config --global user.name "$GIT_NAME"
+git config --global user.email "$GIT_EMAIL"
+git config --global init.defaultBranch main
