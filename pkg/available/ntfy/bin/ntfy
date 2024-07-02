@@ -1,4 +1,7 @@
-export NTFY_DEFAULT_TOPIC="maddie-alerts"
+#!/bin/bash
+set -e
+
+export NTFY_DEFAULT_TOPIC="$USER-alerts"
 ntfy() {
   local msg="$1"
   local topic="$2"
@@ -9,3 +12,5 @@ ntfy() {
     -H "Authorization: Bearer $NTFY_TOKEN" \
     "https://ntfy.maddiem4.cc/$topic"
 }
+
+ntfy "$@"
