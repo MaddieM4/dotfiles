@@ -43,11 +43,10 @@ prompt_for NTFY_TOKEN op://Personal/ntfy/token
   mkdir -p files/.ssh && cd files/.ssh
   if [ ! -e id_$ALGORITHM ]; then
     ssh-keygen -t $ALGORITHM -C "$GIT_EMAIL" -f ./id_$ALGORITHM
+    echo "If you need to save your key in GitHub:"
+    echo "  https://github.com/settings/keys"
+    cat id_$ALGORITHM.pub
   fi
-
-  echo "If you need to save your key in GitHub:"
-  echo "  https://github.com/settings/keys"
-  cat id_$ALGORITHM.pub
 )
 
 echo "You may wish to 'source /etc/profile.d/mm4cc-secrets.sh' now."
