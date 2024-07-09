@@ -31,10 +31,23 @@ prompt_for GIT_EMAIL op://Personal/git/email
 prompt_for NTFY_TOKEN op://Personal/ntfy/token
 
 ( # Configure git
-  source /etc/profile.d/mm4cc-secrets;
+  source /etc/profile.d/mm4cc-secrets.sh;
   git config --global user.name "$GIT_NAME"
   git config --global user.email "$GIT_EMAIL"
   git config --global init.defaultBranch main
 )
 
-echo "You may wish to 'source /etc/profile.d/mm4cc-secrets' now."
+( # Configure ssh
+  source /etc/profile.d/mm4cc-secrets.sh;
+  ALGORITHM=ed25519
+  mkdir -p files/.ssh && cd files/.ssh
+  if [ ! -e id_$ALGORITHM ]; then
+    ssh-keygen -t $ALGORITHM -C "$GIT_EMAIL" -f ./id_$ALGORITHM
+  fi
+
+  echo "If you need to save your key in GitHub:"
+  echo "  https://github.com/settings/keys"
+  cat id_$ALGORITHM.pub
+)
+
+echo "You may wish to 'source /etc/profile.d/mm4cc-secrets.sh' now."
