@@ -1,6 +1,0 @@
-#!/bin/bash
-set -ex
-
-mkdir -p pkg/current
-cd pkg/current
-stow -vt "$HOME" $(ls)

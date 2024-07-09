@@ -1,9 +1,0 @@
-#!/bin/bash
-set -ex
-
-mkdir -p ./pkg/current
-cd ./pkg/current
-
-for package in "$@"; do
-  rm -rf ./$package
-done
