@@ -1,0 +1,33 @@
+#!/bin/bash
+set -e
+
+if [ "$USE_1PASSWORD" = 0 ]; then
+  unset USE_1PASSWORD
+elif (which op > /dev/null); then
+  eval $(op signin)
+  USE_1PASSWORD=1
+fi
+
+suggest() {
+  local url="$1"
+  if [ -n "$USE_1PASSWORD" ]; then
+    op read "$url"
+  fi
+  # Otherwise emit nothing
+}
+
+prompt_for() {
+  local varname="$1"
+  local url="$2"
+  local dest="secrets/.config/mm4cc/secrets/$varname"
+  if [ ! -e "$dest" ]; then
+    read -p "Provide a value for $varname: " -ei "$(suggest "$url")" value
+    echo "$value" > "$dest"
+  fi
+}
+
+prompt_for GIT_NAME op://Personal/git/name
+prompt_for GIT_EMAIL op://Personal/git/email
+prompt_for NTFY_TOKEN op://Personal/ntfy/token
+
+echo "You may wish to 'source /etc/profile.d/mm4cc-secrets' now."

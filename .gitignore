@@ -5,6 +5,7 @@ pkg/current
 # Secrets
 secrets-env-*
 pkg/available/ssh/.ssh/id_*
+secrets/.config/mm4cc/secrets/*
 
 # Heavy downloads
 pkg/available/chuck/projects
