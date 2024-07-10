@@ -29,7 +29,7 @@ clone() {
   else
     local url="https://github.com/${repo}.git"
   fi
-  (set -x && cd ~/projects && git clone "$url")
+  (set -x && mkdir -p ~/projects && cd ~/projects && git clone "$url")
 }
 
 # Make sure dotfiles repo is present
